@@ -1,12 +1,55 @@
+"use client";
 import Link from 'next/link'
+import { useState } from "react";
+import { login } from '../features/auth/login';
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { login as loginAction} from "../features/reducers/authSlice";
 
 const LoginForm = ()=>{
+    const dispatch = useDispatch();
+    const router = useRouter();
+
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    });
+
+    // input state management
+    const handleChange = (e)=>{
+        const target = e.target;
+        setFormData((prev)=>({
+            ...prev,
+            [target.name]:target.value
+        }))
+    }
+
+    // submition function
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+        const user = await login(formData.email, formData.password);
+        if(user){
+            const token = await user.getIdToken();
+            dispatch(loginAction({ user:{
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName
+            }, token }));
+            router.push("/dashboard")
+        }
+    }
+
     return(
-        <form className="w-[450px] h-[450px] flex flex-col items-center justify-start px-6 py-12 gap-5 shadow-lg rounded-sm bg-white">
+        <form 
+        onSubmit={handleSubmit}
+        className="w-[450px] h-[450px] flex flex-col items-center justify-start px-6 py-12 gap-5 shadow-lg rounded-sm bg-white">
             <h1 className="text-3xl">Login</h1>
             <div className="w-full flex flex-col">
                 <label>Email: </label>
                 <input
+                onChange={handleChange}
+                name="email"
+                value={formData.email}
                 className="h-[40px] border border-gray-300 focus:outline-none pl-2"
                 type="email" 
                 required/>
@@ -14,6 +57,9 @@ const LoginForm = ()=>{
             <div className="w-full flex flex-col">
                 <label>Password: </label>
                 <input 
+                onChange={handleChange}
+                name="password"
+                value={formData.password}
                 className="h-[40px] border border-gray-300 focus:outline-none pl-2"
                 type="password" 
                 minLength={8} 

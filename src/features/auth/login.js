@@ -1,16 +1,13 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
-const auth = getAuth();
-
-const login = (email, password)=>{
-    return signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
-    })
-    .catch((error) => {
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase";
+const login = async(email, password)=>{
+    try{
+        const {user} = await signInWithEmailAndPassword(auth, email, password);
+        return user;
+    }catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-    });
+    };
 };
 
 export {login};
