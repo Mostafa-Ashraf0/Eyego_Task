@@ -50,3 +50,5 @@ const data = [
   { id: 49, name: "Mostafa Farouk", email: "mostafa.farouk@example.com", age: 35, salary: 7100, gender: "Male" },
   { id: 50, name: "Amira Nabil", email: "amira.nabil@example.com", age: 26, salary: 4700, gender: "Female" },
 ];
+
+export {data};
