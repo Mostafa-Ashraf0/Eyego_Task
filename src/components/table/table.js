@@ -1,8 +1,19 @@
+"use client";
+import { useEffect } from 'react';
 import {data} from '../../features/data/dummy';
 import Pagination from './pagination';
+import { useSelector,useDispatch } from 'react-redux';
+import { setTableData,setShowedData,setCurrentPage } from '@/features/reducers/tableSlice';
 
 const Table = () => {
-    const style = "text-left px-4 py-2 border-b-2 border-gray-200"
+    const style = "text-left px-4 py-2 border-b-2 border-gray-200";
+    const dispatch = useDispatch();
+    const tableData = useSelector((state)=> state.table.tableData);
+    const showedData = useSelector((state)=> state.table.showedData)
+    useEffect(()=>{
+      dispatch(setTableData(data));
+      dispatch(setShowedData(data.slice(0,10)));
+    },[])
   return (
     <>
     <table border="1" cellPadding="5" cellSpacing="0" className="w-full border-2 border-gray-200">
@@ -17,7 +28,7 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-            {data.map(d=>(
+            {showedData?.map(d=>(
                 <tr key={d.id}>
                     <td className={style}>{d.id}</td>
                     <td className={style}>{d.name}</td>
