@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import {data} from '../../features/data/dummy';
 import Pagination from './pagination';
+import TableControl from './tableControl';
 import { useSelector,useDispatch } from 'react-redux';
 import { setTableData,setShowedData,setCurrentPage } from '@/features/reducers/tableSlice';
 
@@ -12,10 +13,11 @@ const Table = () => {
     const showedData = useSelector((state)=> state.table.showedData)
     useEffect(()=>{
       dispatch(setTableData(data));
-      dispatch(setShowedData(data.slice(0,10)));
+        dispatch(setShowedData(tableData.slice(0,10)));
     },[])
   return (
     <>
+    <TableControl/>
     <table border="1" cellPadding="5" cellSpacing="0" className="w-full border-2 border-gray-200">
       <thead>
         <tr className="text-gray-400 font-light">
