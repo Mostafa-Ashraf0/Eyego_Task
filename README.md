@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dashboard Management System
 
-## Getting Started
+# Live Demo
+https://eyego-task-kappa.vercel.app/
 
-First, run the development server:
+## Features
 
-```bash
+- Display data in a dynamic table with sorting, filtering and pagination
+- Data visualization using charts
+- Authentication system
+- Global state management
+- Responsive UI
+
+---
+
+## Tech Stack
+
+- Next.js
+- React
+- Redux Toolkit
+- Firebase
+- Chart.js
+- Tailwind CSS
+
+---
+
+## Installation
+
+Clone the repository:
+
+git clone https://github.com/Mostafa-Ashraf0/Eyego_Task
+
+Go to the project directory:
+
+cd Eyego_Task
+
+Install dependencies:
+
+npm install
+
+---
+
+## Firebase Setup
+
+Install Firebase:
+
+npm install firebase
+
+Create a Firebase project from the Firebase Console.
+
+After creating the project, create a file called:
+
+firebase.js
+
+Then copy your Firebase SDK configuration from the Firebase console and paste it in the file.
+
+Example:
+
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "your_key",
+  authDomain: "your_domain",
+  projectId: "your_project_id",
+  storageBucket: "your_bucket",
+  messagingSenderId: "your_sender_id",
+  appId: "your_app_id"
+};
+
+const app = initializeApp(firebaseConfig);
+
+export default app;
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root directory and add your Firebase configuration.
+
+copy these variables to your .env file
+
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENTID=
+
+---
+
+## Run the Project
+
+Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
