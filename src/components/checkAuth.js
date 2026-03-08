@@ -1,12 +1,16 @@
 "use client";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { login, logout } from "../features/reducers/authSlice";
+import { useDispatch,useSelector } from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import { login, logout, setLoading } from "../features/reducers/authSlice";
 import { auth } from "@/firebase";
+import { useRouter } from "next/navigation";
+
 
 const CheckAuth = ({children})=>{
     const dispatch = useDispatch();
+    const router = useRouter();
+    const { user, loading } = useSelector((state) => state.auth);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -19,16 +23,15 @@ const CheckAuth = ({children})=>{
             }, token }));
             } else {
             dispatch(logout());
+            router.push("/");
             }
+            dispatch(setLoading(false));
         });
-
         return () => unsubscribe();
         }, [auth, dispatch]);
-    return(
-        <>
-            {children}
-        </>
-    )
+
+        if(loading) return null;
+        return children
 };
 
 export default CheckAuth;
