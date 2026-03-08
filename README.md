@@ -1,4 +1,4 @@
-# Dashboard Management System
+# Eyego Internship Task
 
 # Live Demo
 https://eyego-task-kappa.vercel.app/
