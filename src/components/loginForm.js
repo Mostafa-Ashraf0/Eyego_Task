@@ -42,7 +42,7 @@ const LoginForm = ()=>{
     return(
         <form 
         onSubmit={handleSubmit}
-        className="w-[450px] h-[450px] flex flex-col items-center justify-start px-6 py-12 gap-5 shadow-lg rounded-sm bg-white">
+        className="w-[450px] h-[500px] flex flex-col items-center justify-start px-6 py-12 gap-5 shadow-lg rounded-sm bg-white">
             <h1 className="text-3xl">Login</h1>
             <div className="w-full flex flex-col">
                 <label>Email: </label>
@@ -75,6 +75,11 @@ const LoginForm = ()=>{
             href='/signup'>
                 I have no account
             </Link>
+            <div className='w-full flex flex-col text-sm'>
+                <span className='mb-2'>Demo Account or you can create one:</span>
+                <span>Email: mostafaashrof158@gmail.com</span>
+                <span>password: 123456789</span>
+            </div>
         </form>
     )
 };
