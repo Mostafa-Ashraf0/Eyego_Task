@@ -18,12 +18,12 @@ const Header = ()=>{
     }
     return(
         <header className='w-full h-[60px] p-4 flex items-center justify-between'>
-            <span className='text-xl'>
+            <span className='name text-xl'>
                 Hello, {user?.displayName}
             </span>
             <span 
             onClick={handleLogout}
-            className='flex items-center gap-2 cursor-pointer px-3 py-2 bg-blue-600 text-white rounded-2xl'>
+            className='logout flex items-center gap-2 cursor-pointer px-3 py-2 bg-blue-600 text-white rounded-2xl'>
                 <Image
                 src={logo}
                 alt=''

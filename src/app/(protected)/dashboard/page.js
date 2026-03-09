@@ -4,7 +4,7 @@ import AgeSalaryChart from "@/components/chart";
 
 const Dashboard = ()=>{
     return(
-        <div className="p-12">
+        <div className="dash p-12">
             <Header/>
             <Table/>
             <AgeSalaryChart/>
